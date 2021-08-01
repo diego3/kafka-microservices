@@ -15,6 +15,7 @@ func handleRequests() {
 
 	router.HandleFunc("/", controller.AliveHandler).Methods(http.MethodGet)
 	router.HandleFunc("/customer", controller.GetAllCustomers).Methods(http.MethodGet)
+	router.HandleFunc("/customer", controller.RegisterNewCustomer).Methods(http.MethodPost)
 
 	log.Fatal(http.ListenAndServe(PORT, router))
 }
