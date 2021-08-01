@@ -59,7 +59,6 @@ func (c *CustomerService) GetByEmail(email string) model.Customer {
 
 func (c *CustomerService) IsValid(in model.Customer) model.Validation {
 	customer := c.GetByEmail(in.Email)
-	// Invalid, because this email already exists
 	if strings.Compare(customer.Id, "") != 0 {
 		return model.Validation{Status: false, Error: "Email already exists"}
 	}
