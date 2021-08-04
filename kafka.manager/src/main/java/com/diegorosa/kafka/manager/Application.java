@@ -13,6 +13,7 @@ public class Application {
 
 	@KafkaListener(id = "myId", topics = {"new_account"})
 	public void listen(String record) {
+		// TODO deserialize to customerDTO
 		System.out.println("record: "+record);
 	}
 }
