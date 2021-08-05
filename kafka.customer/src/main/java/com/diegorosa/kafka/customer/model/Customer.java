@@ -18,5 +18,5 @@ public class Customer {
 
     private String email;
 
-    private Double renda;
+    private Double salary;
 }

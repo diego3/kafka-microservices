@@ -10,3 +10,6 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+#  kafka:
+#    producer:
+#        value-serializar: "org.springframework.kafka.support.serializer.JsonSerializer"

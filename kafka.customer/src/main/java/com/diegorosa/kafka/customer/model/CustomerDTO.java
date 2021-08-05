@@ -16,5 +16,5 @@ public class CustomerDTO implements Serializable {
 
     private String email;
 
-    private Double renda;
+    private Double salary;
 }

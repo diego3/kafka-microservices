@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.config.TopicBuilder;
 
 @SpringBootApplication
-public class Application {
+public class ApplicationCustomerService {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ApplicationCustomerService.class, args);
 	}
 
 	@Bean
