@@ -11,8 +11,8 @@ COPY . /app/
 
 #RUN ls -la
 
-RUN go build -o customer-service
+RUN go build -o /customer-service
 
 EXPOSE 9090
 
-ENTRYPOINT [ "customer-service" ]
+ENTRYPOINT [ "/customer-service" ]
