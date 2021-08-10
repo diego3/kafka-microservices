@@ -1,11 +1,10 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net/http"
 
-	"github.com/go-redis/redis/v8"
+	//"github.com/go-redis/redis/v8"
 	"github.com/gorilla/mux"
 	"go.customer/controller"
 )
@@ -24,11 +23,11 @@ func handleRequests() {
 
 func init() {
 	log.Println("Customer service init")
-	redisClient := redis.NewClient(&redis.Options{
+	/*redisClient := redis.NewClient(&redis.Options{
 		Addr: "localhost:6379",
 	})
 	redisClient.LPush(context.Background(), "redis-key-1", "customer1")
-	log.Println(redisClient)
+	log.Println(redisClient)*/
 }
 
 func main() {
