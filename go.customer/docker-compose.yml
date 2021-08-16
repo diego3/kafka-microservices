@@ -1,0 +1,17 @@
+version: "3.3"
+services: 
+  app:
+    container_name: customer_service
+    build: .
+    ports: 
+    - 9090:9090
+    environment:
+      - ELASTIC_APM_SERVICE_NAME=customer_service_v1
+      - ELASTIC_APM_SERVER_URL=http://apm-server:8200
+      # - ELASTIC_APM_SECRET_TOKEN=
+      - ELASTIC_APM_ENVIRONMENT=development 
+    networks:
+      - elastic
+networks:
+  elastic:
+    driver: bridge

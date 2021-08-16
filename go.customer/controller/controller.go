@@ -12,6 +12,8 @@ import (
 )
 
 func AliveHandler(w http.ResponseWriter, r *http.Request) {
+	//ctx := apm.DefaultTracer.StartTransaction("GET /alive", "request")
+	//defer ctx.End()
 	fmt.Fprintf(w, "{\"alive\": \"true\"}")
 }
 
