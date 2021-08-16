@@ -10,3 +10,6 @@ require (
 	go.elastic.co/apm v1.13.1 // indirect
 	go.elastic.co/apm/module/apmgorilla v1.13.1 // indirect
 )
+require github.com/google/uuid v1.3.0
+
+replace go.customer/controller => ./
