@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 
 	"go.customer/model"
 	"go.customer/service"
@@ -13,7 +14,7 @@ import (
 
 func AliveHandler(w http.ResponseWriter, r *http.Request) {
 	//ctx := apm.DefaultTracer.StartTransaction("GET /alive", "request")
-	//defer ctx.End()
+	//defer ctx.End()ELASTIC_APM_SERVER_URL
 	fmt.Fprintf(w, "{\"alive\": \"true\"}")
 }
 
@@ -39,4 +40,6 @@ func RegisterNewCustomer(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(newCustomer)
 		log.Println("new customer OK")
 	}
+
+	log.Println("ELASTIC_APM_SERVER_URL=" + os.Getenv("ELASTIC_APM_SERVER_URL"))
 }
