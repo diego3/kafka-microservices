@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ApplicationManagerService<kafka.manager>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.diegorosa.kafka.manager.ApplicationManagerService",
+            "projectName": "kafka.manager",
+            "args": ""
+        }
+    ]
+}
