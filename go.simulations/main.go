@@ -41,11 +41,12 @@ func NewCustomer(i int) (status string) {
 
 func main() {
 
-	var count = 100
-	for i := 25; i < count; i++ {
+	var i = 0
+	for {
 		status := NewCustomer(i)
 		log.Println("status: " + status)
-		time.Sleep(time.Millisecond * 500)
+		time.Sleep(time.Millisecond * 10)
+		i++
 	}
 
 }
