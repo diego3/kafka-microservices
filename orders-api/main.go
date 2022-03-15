@@ -1,5 +1,9 @@
 package main
 
-func main() {
+import (
+	"github.com/diego3/kafka-microservices/lib"
+)
 
+func main() {
+	lib.Hello("Diego")
 }
