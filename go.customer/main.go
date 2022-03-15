@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	//"github.com/go-redis/redis/v8"
+	"github.com/diego3/kafka-microservices/controller"
 	"github.com/gorilla/mux"
-	"go.customer/controller"
 	"go.elastic.co/apm/module/apmgorilla"
 )
 
