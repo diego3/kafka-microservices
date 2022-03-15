@@ -4,8 +4,8 @@ import (
 	"errors"
 	"strings"
 
+	"github.com/diego3/kafka-microservices/go.customer/model"
 	"github.com/google/uuid"
-	"go.customer/model"
 )
 
 var customers []model.Customer

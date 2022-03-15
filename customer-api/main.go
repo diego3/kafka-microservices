@@ -8,7 +8,7 @@ import (
 	//"github.com/go-redis/redis/v8"
 	"github.com/diego3/kafka-microservices/controller"
 	"github.com/gorilla/mux"
-	"go.elastic.co/apm/module/apmgorilla"
+	//"go.elastic.co/apm/module/apmgorilla"
 )
 
 const PORT = ":9090"
@@ -20,7 +20,7 @@ func handleRequests() {
 	router.HandleFunc("/customer", controller.GetAllCustomers).Methods(http.MethodGet)
 	router.HandleFunc("/customer", controller.RegisterNewCustomer).Methods(http.MethodPost)
 
-	apmgorilla.Instrument(router)
+	//apmgorilla.Instrument(router)
 
 	log.Fatal(http.ListenAndServe(PORT, router)) //apmhttp.Wrap(router)
 }
