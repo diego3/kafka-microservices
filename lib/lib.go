@@ -8,6 +8,6 @@ import (
 
 // Shared lib between microservices
 func Hello(name string) string {
-	message := fmt.Sprintf("Hi, %v. Welcome! %v", name, uuid.String())
+	message := fmt.Sprintf("Hi, %v. Welcome! %v", name, uuid.NewString())
 	return message
 }
