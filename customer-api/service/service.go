@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/diego3/kafka-microservices/model"
+	"github.com/diego3/kafka-microservices/customer-api/model"
 	"github.com/google/uuid"
 )
 

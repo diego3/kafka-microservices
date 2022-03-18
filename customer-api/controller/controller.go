@@ -8,7 +8,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/diego3/kafka-microservices/service"
+	"github.com/diego3/kafka-microservices/customer-api/model"
+	"github.com/diego3/kafka-microservices/customer-api/service"
 )
 
 func AliveHandler(w http.ResponseWriter, r *http.Request) {

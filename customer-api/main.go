@@ -8,7 +8,7 @@ import (
 	//"github.com/go-redis/redis/v8"
 	"github.com/gorilla/mux"
 	//"go.elastic.co/apm/module/apmgorilla"
-	"github.com/diego3/kafka-microservices/controller"
+	"github.com/diego3/kafka-microservices/customer-api/controller"
 )
 
 const PORT = ":9090"
