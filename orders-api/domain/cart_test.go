@@ -1,6 +1,9 @@
 package domain
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 //go test domain/* -v
 
@@ -77,4 +80,15 @@ func TestCartTotalAmountCalculation(t *testing.T) {
 		assertExcepted(t, result, expected)
 	})
 
+}
+
+func ExampleCart_CalcTotalAmount() {
+	cart := Cart{}
+	phone := Item{Description: "Phone1", Quantity: 2, UnitValue: 500.0}
+	smartTv := Item{Description: "SmartTv", Quantity: 5, UnitValue: 1000.0}
+	cart.AddItem(phone)
+	cart.AddItem(smartTv)
+
+	fmt.Println(cart.CalcTotalAmount())
+	// Output: 6000
 }
