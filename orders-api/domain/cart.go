@@ -1,5 +1,7 @@
 package domain
 
+import "math"
+
 type Item struct {
 	Description string
 	Quantity    int64
@@ -29,5 +31,5 @@ func (c *Cart) AddItem(item Item) {
 
 // Calculate total amount for an Item
 func (c *Item) CalcTotalAmount() float64 {
-	return c.UnitValue * float64(c.Quantity)
+	return math.Abs(c.UnitValue) * math.Abs(float64(c.Quantity))
 }
