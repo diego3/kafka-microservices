@@ -24,6 +24,7 @@ func (c *Cart) CalcTotalAmount() float64 {
 	return total
 }
 
+// Add an Item to the cart
 func (c *Cart) AddItem(item Item) {
 	added := append(c.Items, item)
 	c.Items = added
