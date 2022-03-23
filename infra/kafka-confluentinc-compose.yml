@@ -35,15 +35,15 @@ services:
     environment:
       KAFKA_BROKERCONNECT: kafka:29092
 
-  mysql:
-    image: mysql:5.7.33
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - 3306:3306
-    volumes:
-      - /opt/mysql_data/:/var/lib/mysql
+  # mysql:
+  #   image: mysql:5.7.33
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - /opt/mysql_data/:/var/lib/mysql
 
 networks: 
   broker-kafka:
