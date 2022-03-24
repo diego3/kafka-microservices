@@ -11,17 +11,20 @@ import (
 )
 
 type KafkaConsumer struct {
+	brokers []string
 }
 
-func NewKafkaConsumer() *KafkaConsumer {
-	return &KafkaConsumer{}
+func NewKafkaConsumer(brokers []string) *KafkaConsumer {
+	return &KafkaConsumer{
+		brokers: brokers,
+	}
 }
 
-func (c *KafkaConsumer) Consume(brokers []string, topic string, partition int) {
+func (c *KafkaConsumer) Consume(topic string, partition int) {
 	log.Println("starting kafka consumer")
 
 	r := kafka.NewReader(kafka.ReaderConfig{
-		Brokers:   brokers,
+		Brokers:   c.brokers,
 		Topic:     topic,
 		Partition: partition,
 		MinBytes:  10e3, // 10KB

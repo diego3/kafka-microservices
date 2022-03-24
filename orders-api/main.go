@@ -3,10 +3,12 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/diego3/kafka-microservices/lib"
 	"github.com/diego3/kafka-microservices/orders-api/controller"
 	"github.com/diego3/kafka-microservices/orders-api/event"
+	"github.com/gorilla/mux"
 )
 
 func init() {
@@ -17,14 +19,23 @@ func main() {
 	lib.Hello("Diego")
 	log.Println("order-api v1")
 
-	http.HandleFunc("/order", controller.HandleCreateOrder)
+	router := mux.NewRouter()
+	router.HandleFunc("/order", controller.HandleCreateOrder).Methods(http.MethodPost)
+	router.HandleFunc("/order", controller.HandleGetOrders).Methods(http.MethodGet)
 
 	// TODO: blocking call avoided with the goroutine, check if its is a good practice
 	// have a consumer and producer at same application
-	go event.NewKafkaConsumer().Consume([]string{"localhost:9092"}, "topic-A", 0)
+	go event.NewKafkaConsumer([]string{"localhost:9092"}).Consume("topic-A", 0)
+
+	server := http.Server{
+		Handler:      router,
+		Addr:         "127.0.0.1:5052",
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+	err := server.ListenAndServe()
 
 	// never reaching here without using goroutine at kakfa consumer!!!!
-	err := http.ListenAndServe(":5052", nil)
 	if err != nil {
 		log.Fatalln("http server error", err)
 	}
