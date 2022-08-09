@@ -6,8 +6,9 @@ import (
 	"time"
 
 	"github.com/diego3/kafka-microservices/lib"
-	"github.com/diego3/kafka-microservices/orders-api/controller"
-	"github.com/diego3/kafka-microservices/orders-api/event"
+	controller "github.com/diego3/kafka-microservices/orders-api/infra/http"
+
+	//"github.com/diego3/kafka-microservices/orders-api/event"
 	"github.com/gorilla/mux"
 )
 
@@ -29,7 +30,7 @@ func main() {
 
 	// TODO: blocking call avoided with the goroutine, check if its is a good practice
 	// have a consumer and producer at same application
-	go event.NewKafkaConsumer([]string{"localhost:9092"}).Consume("topic-A", 0)
+	//go event.NewKafkaConsumer([]string{"localhost:9092"}).Consume("ecommerce-new-order", 0)
 
 	server := http.Server{
 		Handler:      router,

@@ -1,4 +1,4 @@
-package repository
+package db
 
 import (
 	"context"
@@ -9,14 +9,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type MongoOrderRepository struct {
+type MongoDB struct {
 	Uri     string
 	Timeout time.Duration
 }
 
 var ctx = context.TODO()
 
-func (r *MongoOrderRepository) Connection() {
+func (r *MongoDB) Connection() {
 	// https://pkg.go.dev/go.mongodb.org/mongo-driver@v1.8.4/mongo/options#ClientOptions
 	clientOptions := options.Client().ApplyURI(r.Uri)
 	clientOptions.SetServerSelectionTimeout(r.Timeout)

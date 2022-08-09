@@ -1,4 +1,4 @@
-package repository
+package domain
 
 type Repository interface {
 }

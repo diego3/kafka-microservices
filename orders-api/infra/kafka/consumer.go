@@ -1,4 +1,4 @@
-package event
+package kafka
 
 // https://github.com/segmentio/kafka-go
 
@@ -27,8 +27,9 @@ func (c *KafkaConsumer) Consume(topic string, partition int) {
 		Brokers:   c.brokers,
 		Topic:     topic,
 		Partition: partition,
-		MinBytes:  10e3, // 10KB
-		MaxBytes:  10e6, // 10MB
+
+		MinBytes: 10e3, // 10KB
+		MaxBytes: 10e6, // 10MB
 	})
 	r.SetOffset(0)
 

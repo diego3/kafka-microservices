@@ -1,4 +1,4 @@
-package event
+package kafka
 
 import (
 	"context"
@@ -16,9 +16,10 @@ func NewKafkaProducer() *KafkaProducer {
 
 func (p *KafkaProducer) Produce(address, topic, messageKey, message string) {
 	w := kafka.Writer{
-		Addr:     kafka.TCP(address),
-		Topic:    topic,
-		Balancer: &kafka.LeastBytes{},
+		Addr:         kafka.TCP(address),
+		Topic:        topic,
+		RequiredAcks: kafka.RequireAll,
+		Balancer:     &kafka.LeastBytes{},
 	}
 
 	msg := kafka.Message{
