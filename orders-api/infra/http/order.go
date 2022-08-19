@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -10,7 +9,6 @@ import (
 	"time"
 
 	"github.com/diego3/kafka-microservices/orders-api/domain"
-	"github.com/diego3/kafka-microservices/orders-api/domain/event"
 	"github.com/diego3/kafka-microservices/orders-api/infra/db"
 )
 
@@ -21,8 +19,7 @@ func HandleCreateOrder(resp http.ResponseWriter, req *http.Request) {
 		log.Fatalln("CreateOrder Error: trying to read body", err)
 		return
 	}
-	fmt.Println("enviando para fila")
-	fmt.Println(string(bytes))
+	//fmt.Println(string(bytes))
 	order := domain.Order{}
 	err = json.Unmarshal(bytes, &order)
 	if err != nil {
@@ -31,10 +28,16 @@ func HandleCreateOrder(resp http.ResponseWriter, req *http.Request) {
 		io.WriteString(resp, "invalid request")
 		return
 	}
-	fmt.Println(order)
 
-	//TODO: create abstraction here!!!!
-	event.NewKafkaProducer().Produce("localhost:9092", "ecommerce-new-order", "order", string(bytes))
+	repository := db.MongoOrderRepository{
+		Db: db.MongoDB{
+			Uri: "localhost:27017",
+		},
+	}
+	service := domain.OrderService{
+		Repository: &repository,
+	}
+	service.Repository.PlaceNewOrder(order)
 
 	resp.WriteHeader(http.StatusOK)
 	io.WriteString(resp, "ok")
