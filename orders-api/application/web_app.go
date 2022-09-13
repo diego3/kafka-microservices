@@ -5,27 +5,19 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/diego3/kafka-microservices/lib"
 	controller "github.com/diego3/kafka-microservices/orders-api/infra/http"
-	"github.com/gorilla/mux"
+	"github.com/labstack/echo/v4"
 )
 
+// https://medium.com/avenue-tech/dependency-injection-in-go-35293ef7b6
+// https://medium.com/avenue-tech/arquitetura-hexagonal-com-golang-c344411aa940
 type WebApp struct {
 }
 
 func (w *WebApp) Run() {
-	// injetar todas as depedencias
-
-	lib.Hello("Diego")
-	log.Println("order-api v1")
-
-	router := mux.NewRouter()
-	router.HandleFunc("/order", controller.HandleCreateOrder).Methods(http.MethodPost)
-	router.HandleFunc("/order", controller.HandleGetOrders).Methods(http.MethodGet)
-
-	// TODO: blocking call avoided with the goroutine, check if its is a good practice
-	// have a consumer and producer at same application
-	//go event.NewKafkaConsumer([]string{"localhost:9092"}).Consume("ecommerce-new-order", 0)
+	router := echo.New()
+	router.POST("/order", controller.HandleCreateOrder)
+	router.GET("/order", controller.HandleGetOrders)
 
 	server := http.Server{
 		Handler:      router,
@@ -33,6 +25,8 @@ func (w *WebApp) Run() {
 		WriteTimeout: 2 * time.Second,
 		ReadTimeout:  2 * time.Second,
 	}
+
+	log.Println("order-api v1")
 	err := server.ListenAndServe()
 
 	// never reaching here without using goroutine at kakfa consumer!!!!

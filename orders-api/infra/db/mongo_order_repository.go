@@ -7,11 +7,11 @@ type MongoOrderRepository struct {
 }
 
 func (r *MongoOrderRepository) PlaceNewOrder(order domain.Order) {
-	// map domain to document
+
 }
 
 func (r *MongoOrderRepository) FindById(id string) (domain.Order, error) {
-	order := domain.Order{}
-	// map document to domain
-	return order, nil
+	order := OrderModel{}
+	theOrder := fromDocumentModelToOrderDomain(order)
+	return *theOrder, nil
 }
